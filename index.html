@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Daniela</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .card h1 {
+            color: #ff6f61;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .card .message {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        #countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6f61;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Para Daniela</h1>
+        <p class="message">Cuenta regresiva para una sorpresa especial:</p>
+        <div id="countdown"></div>
+    </div>
+
+    <script>
+        // Fecha límite para la cuenta regresiva
+        const countdownDate = new Date("December 31, 2024 23:59:59").getTime();
+
+        // Actualiza la cuenta regresiva cada segundo
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "¡Sorpresa!";
+                downloadPDF();
+            }
+        }, 1000);
+
+        // Descarga automática del PDF
+        function downloadPDF() {
+            const link = document.createElement('a');
+            // Aquí debes usar la URL completa de tu archivo PDF en GitHub Pages
+            link.href = 'https://david-valle1.github.io/carta-daniela/Carta_Daniela.pdf'; // URL completa del PDF
+            link.download = 'Carta_para_Daniela.pdf';
+            link.click();
+        }
+    </script>
+</body>
+</html>

@@ -167,10 +167,11 @@
         
         <!-- Agrega más imágenes según sea necesario -->
     </div>
-
     <script>
-        const countdownDate = new Date("2023-12-23T4:30:00").getTime(); // Fecha y hora deseada: 23 de diciembre de 2023, 11:00 AM
+        // Fecha límite para la cuenta regresiva
+        const countdownDate = new Date("December 23, 2024 11:59:59").getTime(); 
 
+        // Actualiza la cuenta regresiva cada segundo
         const countdown = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate - now;
@@ -185,38 +186,36 @@
                     `${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
                 clearInterval(countdown);
-                document.getElementById("countdown").innerHTML = "¡Feliz cumpleaños mi amoooor!";
-                startConfetti(); // Llama a la función para iniciar el confeti
-
-                // Esperar 3 segundos (3000 ms) antes de descargar el PDF
-                setTimeout(downloadPDF, 8000);
+                document.getElementById("countdown").innerHTML = "¡Feliz cumpleaños mi amoooor!"; // Mensaje de Sorpresa
+                startConfetti();  // Inicia el confeti
+                downloadPDF();    // Inicia la descarga del PDF
             }
         }, 1000);
 
-        function downloadPDF() {
-            const link = document.createElement('a');
-            link.href = 'https://david-valle1.github.io/carta-daniela/Carta_Daniela.pdf';
-            link.download = 'Carta_para_Daniela.pdf';
-            link.click();
-        }
-
-        // Función para iniciar el confeti con MUCHÍSIMAS partículas
+        // Función para lanzar el confeti
         function startConfetti() {
             // Lanza varias ráfagas de confeti para crear un efecto impresionante
             for (let i = 0; i < 10; i++) {
                 setTimeout(() => {
                     confetti({
-                        particleCount: 2000,  // Muchísimas partículas
-                        spread: 180,          // Ángulo de dispersión amplio
-                        origin: { y: 0.5 },   // Desde el centro vertical
+                        particleCount: 2000, // Muchísimas partículas
+                        spread: 180,         // Ángulo de dispersión amplio
+                        origin: { y: 0.5 },  // Desde el centro vertical
                         colors: ['#ff6f61', '#ffcc00', '#00ffcc', '#ff1493', '#32cd32', '#1e90ff', '#ff6347', '#800080', '#ff4500', '#00fa9a'],
- // Colores del confeti
-                        scalar: 1.2           // Aumenta la visibilidad de las partículas
+                        scalar: 1.2          // Aumenta la visibilidad de las partículas
                     });
-                }, i * 2000); // Lanza varias ráfagas con un retraso de 200ms entre ellas
+                }, i * 2000); // Lanza varias ráfagas con un retraso de 2 segundos entre ellas
             }
         }
+
+        // Función para la descarga automática del PDF (restaurando la dirección original)
+        function downloadPDF() {
+            const link = document.createElement('a');
+            link.href = 'https://github.com/David-Valle1/carta-daniela/blob/main/Carta_Daniela.pdf?raw=true'; // Dirección original
+            link.download = 'Carta_para_Daniela.pdf';
+            link.click();
+        }
     </script>
+    
 </body>
 </html>
-

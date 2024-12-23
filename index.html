@@ -4,58 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Daniela</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script> <!-- Agregar librería -->
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
+            background: #f4f4f4;
             font-family: 'Arial', sans-serif;
+            position: relative;
+            flex-direction: column;
+            background: rgb(96,44,193);
+            background: radial-gradient(circle, rgba(96,44,193,1) 0%, rgba(255,0,245,1) 100%);
+        }
+
+        .collage-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+            grid-template-rows: repeat(2, 1fr); /* 2 filas */
+            gap: 10px; /* Espacio entre las imágenes */
+            width: 90%;
+            height: 100%; /* Ocupa la mitad de la pantalla */
+            max-width: 900px;
+            max-height: 600px;
+            margin-top: 20px;
+        }
+
+        .collage-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que las imágenes cubran todo el área sin distorsionarse */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
         .card {
+            position: absolute; /* Para que se sitúe encima del collage */
+            top: 50%; /* Ajusta la posición vertical */
+            left: 50%; /* Centra el elemento horizontalmente */
+            transform: translateX(-50%); /* Asegura que quede centrado */
             text-align: center;
-            background: #fff;
-            padding: 20px;
+            background: white; /* Fondo semitransparente */
+            padding: 10px;
             border-radius: 15px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
             max-width: 400px;
             width: 90%;
+            z-index: 2; /* Asegura que el contador esté por encima de las imágenes */
         }
 
         .card h1 {
-            color: #ff6f61;
-            font-size: 2rem;
+            color: rgba(255,0,245,1);
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
         .card .message {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #555;
         }
 
         #countdown {
-            font-size: 1.5rem;
+            font-size: 1.9rem;
             font-weight: bold;
-            color: #ff6f61;
+            color: rgba(96,44,193,1);
             margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Para Daniela</h1>
-        <p class="message">Cuenta regresiva para una sorpresa especial:</p>
+        <h1>Para mi amada princesa 👑</h1>
+        <p class="message">Cuenta regresiva para tu cumpleaños 🎂🥳🎉🪅: </p>
         <div id="countdown"></div>
     </div>
 
-    <script>
-        // Fecha límite para la cuenta regresiva
-        const countdownDate = new Date().getTime() + 1 * 60 * 1000; // 1 minuto = 60 segundos * 1000 milisegundos
+    <div class="collage-container">
+        <!-- Aquí van tus imágenes de collage desde GitHub -->
+        
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(1).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(2).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(3).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(4).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(5).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(6).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(7).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(8).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(9).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(10).jpg?raw=true" alt="Tu foto">
 
-        // Actualiza la cuenta regresiva cada segundo
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(11).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(12).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(13).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(14).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(15).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(16).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(17).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(18).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(19).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(20).jpg?raw=true" alt="Tu foto">
+
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(21).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(22).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(23).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(24).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(25).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(26).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(27).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(28).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(29).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(30).jpg?raw=true" alt="Tu foto">
+
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(31).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(32).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(33).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(34).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(35).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(36).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(37).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(38).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(39).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(40).jpg?raw=true" alt="Tu foto">
+
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(42).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(43).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(44).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(45).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(46).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(47).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(48).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(49).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(50).jpg?raw=true" alt="Tu foto">
+
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(51).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(52).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(53).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(54).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(55).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(56).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(57).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(58).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(59).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(60).jpg?raw=true" alt="Tu foto">
+
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(61).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(62).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(63).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(64).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(65).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(66).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(67).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(68).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(69).jpg?raw=true" alt="Tu foto">
+        <img src="https://github.com/David-Valle1/carta-daniela/blob/main/foto%20(70).jpg?raw=true" alt="Tu foto">
+        
+        <!-- Agrega más imágenes según sea necesario -->
+    </div>
+
+    <script>
+        const countdownDate = new Date().getTime() + 1 * 60 * 100; // 1 minuto = 60 segundos * 1000 milisegundos
+
         const countdown = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate - now;
@@ -70,18 +185,36 @@
                     `${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
                 clearInterval(countdown);
-                document.getElementById("countdown").innerHTML = "¡Sorpresa!";
-                downloadPDF();
+                document.getElementById("countdown").innerHTML = "¡Feliz cumpleaños mi amoooor!";
+                startConfetti(); // Llama a la función para iniciar el confeti
+
+                // Esperar 3 segundos (3000 ms) antes de descargar el PDF
+                setTimeout(downloadPDF, 8000);
             }
         }, 1000);
 
-        // Descarga automática del PDF
         function downloadPDF() {
             const link = document.createElement('a');
-            // Aquí debes usar la URL completa de tu archivo PDF en GitHub Pages
-            link.href = 'https://david-valle1.github.io/carta-daniela/Carta_Daniela.pdf'; // URL completa del PDF
+            link.href = 'https://david-valle1.github.io/carta-daniela/Carta_Daniela.pdf';
             link.download = 'Carta_para_Daniela.pdf';
             link.click();
+        }
+
+        // Función para iniciar el confeti con MUCHÍSIMAS partículas
+        function startConfetti() {
+            // Lanza varias ráfagas de confeti para crear un efecto impresionante
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 2000,  // Muchísimas partículas
+                        spread: 180,          // Ángulo de dispersión amplio
+                        origin: { y: 0.5 },   // Desde el centro vertical
+                        colors: ['#ff6f61', '#ffcc00', '#00ffcc', '#ff1493', '#32cd32', '#1e90ff', '#ff6347', '#800080', '#ff4500', '#00fa9a'],
+ // Colores del confeti
+                        scalar: 1.2           // Aumenta la visibilidad de las partículas
+                    });
+                }, i * 2000); // Lanza varias ráfagas con un retraso de 200ms entre ellas
+            }
         }
     </script>
 </body>

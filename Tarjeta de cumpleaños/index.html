@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+}
+
+.card h1 {
+    color: #ff6f61;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.card .message {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+#countdown {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-top: 15px;
+}
+</style>
+<script>
+    // Fecha límite para la cuenta regresiva
+    const countdownDate = new Date(new Date().getTime() + 1 * 60 * 1000).getTime();  // 10 minutos desde ahora
+
+// Actualiza la cuenta regresiva cada segundo
+const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    } else {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "¡Sorpresa!";
+        downloadPDF();
+    }
+}, 1000);
+
+// Descarga automática del PDF
+function downloadPDF() {
+    const link = document.createElement('a');
+    link.href = 'Carta_Daniela.pdf'; // Asegúrate de incluir este archivo en tu carpeta
+    link.download = 'Carta_para_Daniela.pdf';
+    link.click();
+}
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Daniela</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Para Daniela</h1>
+        <p class="message">Cuenta regresiva para una sorpresa especial:</p>
+        <div id="countdown"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

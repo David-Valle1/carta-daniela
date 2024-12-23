@@ -53,7 +53,7 @@
 
     <script>
         // Fecha límite para la cuenta regresiva
-        const countdownDate = new Date("December 31, 2024 23:59:59").getTime();
+        const countdownDate = new Date().getTime() + 1 * 60 * 1000; // 1 minuto = 60 segundos * 1000 milisegundos
 
         // Actualiza la cuenta regresiva cada segundo
         const countdown = setInterval(() => {

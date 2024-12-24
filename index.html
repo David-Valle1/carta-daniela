@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Daniela</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script> <!-- Agregar librería -->
+    <title>Sobre con Carta y Cuenta Regresiva</title>
     <style>
         body {
             margin: 0;
@@ -13,79 +12,135 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #f4f4f4;
-            font-family: 'Arial', sans-serif;
-            position: relative;
-            flex-direction: column;
             background: rgb(96,44,193);
             background: radial-gradient(circle, rgba(96,44,193,1) 0%, rgba(255,0,245,1) 100%);
+            font-family: Arial, sans-serif;
         }
 
+        .container {
+            position: relative;
+        }
+
+        .envelope {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            height: 200px;
+            background: #ff6b6b;
+            border-radius: 5px;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ff4d4d;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top;
+            transform: rotateX(0deg);
+            transition: transform 0.5s ease;
+        }
+
+        .envelope.open {
+            transform: translateX(-50%) translateY(200px);
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(-135deg);
+        }
+
+        .flap::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+        }
+
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .to-daniela {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            position: fixed; /* Cambio aquí: posición fija */
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            z-index: 1;
+        }
+        
+        .message h1 {
+            font-size: 22px;
+            color: rgba(255,0,245,1);
+        }   
+
+        .message p {
+            font-size: 17px;
+            color: #333;
+        }
         .collage-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-            grid-template-rows: repeat(2, 1fr); /* 2 filas */
-            gap: 10px; /* Espacio entre las imágenes */
-            width: 90%;
-            height: 100%; /* Ocupa la mitad de la pantalla */
-            max-width: 900px;
-            max-height: 600px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
         }
 
         .collage-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Asegura que las imágenes cubran todo el área sin distorsionarse */
+            object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .card {
-            position: absolute; /* Para que se sitúe encima del collage */
-            top: 50%; /* Ajusta la posición vertical */
-            left: 50%; /* Centra el elemento horizontalmente */
-            transform: translateX(-50%); /* Asegura que quede centrado */
-            text-align: center;
-            background: white; /* Fondo semitransparente */
-            padding: 10px;
-            border-radius: 15px;
-            box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 90%;
-            z-index: 2; /* Asegura que el contador esté por encima de las imágenes */
-        }
-
-        .card h1 {
-            color: rgba(255,0,245,1);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .card .message {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        #countdown {
-            font-size: 1.9rem;
-            font-weight: bold;
-            color: rgba(96,44,193,1);
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
+        .countdown {
+            font-size: 22px;
+            color: #cb00fd;
+            margin-top: 10px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
     </style>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </head>
 <body>
-    <div class="card">
-        <h1>Para mi amada princesa 👑</h1>
-        <p class="message">Cuenta regresiva para tu cumpleaños 🎂🥳🎉🪅: </p>
-        <div id="countdown"></div>
-    </div>
-
     <div class="collage-container">
         <!-- Aquí van tus imágenes de collage desde GitHub -->
         
@@ -167,55 +222,96 @@
         
         <!-- Agrega más imágenes según sea necesario -->
     </div>
+
+    <div class="container">
+        <div class="envelope" onclick="toggleEnvelope(this)">
+            <div class="flap"></div>
+            <div class="heart">❤️</div>
+            <div class="to-daniela"></div>
+        </div>
+        <div class="message">
+            <h1>Para mi amada princesa 👑</h1>
+            <p>Cuenta regresiva para tu cumpleaños:</p>
+            <div class="countdown" id="countdown"></div>
+        </div>
+    </div>
+
     <script>
-        // Fecha límite para la cuenta regresiva
-        const countdownDate = new Date("December 23, 2024 11:59:59").getTime(); 
-
-        // Actualiza la cuenta regresiva cada segundo
-        const countdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("countdown").innerHTML = 
-                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            } else {
-                clearInterval(countdown);
-                document.getElementById("countdown").innerHTML = "¡Feliz cumpleaños mi amoooor!"; // Mensaje de Sorpresa
-                startConfetti();  // Inicia el confeti
-                downloadPDF();    // Inicia la descarga del PDF
-            }
-        }, 1000);
-
-        // Función para lanzar el confeti
-        function startConfetti() {
-            // Lanza varias ráfagas de confeti para crear un efecto impresionante
-            for (let i = 0; i < 10; i++) {
-                setTimeout(() => {
-                    confetti({
-                        particleCount: 2000, // Muchísimas partículas
-                        spread: 180,         // Ángulo de dispersión amplio
-                        origin: { y: 0.5 },  // Desde el centro vertical
-                        colors: ['#ff6f61', '#ffcc00', '#00ffcc', '#ff1493', '#32cd32', '#1e90ff', '#ff6347', '#800080', '#ff4500', '#00fa9a'],
-                        scalar: 1.2          // Aumenta la visibilidad de las partículas
-                    });
-                }, i * 2000); // Lanza varias ráfagas con un retraso de 2 segundos entre ellas
-            }
+        function toggleEnvelope(envelope) {
+            envelope.classList.toggle('open');
         }
+    
+        function startCountdown(targetDate) {
+            const countdownElement = document.getElementById('countdown');
+    
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+    
+                if (diff <= 0) {
+                    countdownElement.textContent = "¡Feliz cumpleaños mi amooor! 🎉🎂🥳🪅";
+                    clearInterval(intervalId);
+                    launchConfetti();
+                    setTimeout(downloadPDF, 10000); // Espera 10 segundos para descargar el PDF
+                    return;
+                }
+    
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+                countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+    
+            const intervalId = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+    
+        function launchConfetti() {
+            const duration = 7 * 1000; // Duración en milisegundos
+            const end = Date.now() + duration;
+    
+            (function frame() {
 
-        // Función para la descarga automática del PDF (restaurando la dirección original)
+                confetti({
+                    particleCount: 25, // Confeti por cuadro
+                    spread: 70,
+                    colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'], 
+                    origin: { x: Math.random(), y: Math.random() - 0.2 } // Dispersión aleatoria
+                });
+
+
+                confetti({
+                    particleCount: 25, // Confeti por cuadro
+                    spread: 70,
+                    colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'], 
+                    origin: { x: 0 }                
+                });
+
+                confetti({
+                    particleCount: 25, // Confeti por cuadro
+                    spread: 70,
+                    colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'], 
+                    origin: { x: 1 }
+                });
+    
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+    
         function downloadPDF() {
             const link = document.createElement('a');
-            link.href = 'https://github.com/David-Valle1/carta-daniela/blob/main/Carta_Daniela.pdf?raw=true'; // Dirección original
-            link.download = 'Carta_para_Daniela.pdf';
+            link.href = 'https://raw.githubusercontent.com/David-Valle1/carta-daniela/main/Carta_Daniela.pdf'; // Reemplaza con la URL del archivo PDF
+            link.download = 'Carta_para_Daniela.pdf'; // Nombre del archivo descargado
             link.click();
         }
-    </script>
     
+        // Configura la fecha objetivo (cumpleaños)
+        const birthday = new Date('2024-12-23T22:39:00');
+        startCountdown(birthday);
+    </script>
 </body>
 </html>
